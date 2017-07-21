@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <h1>{{ 'front.category.title'|trans }}</h1>
+        <!-- Static navbar -->
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">{{ 'front.category.nav.header'|trans }}</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse"> 
+                    
+                    {{ category_navbar(categories)|raw }}
+                            
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </div><!--/.container-fluid -->
+        </nav>
+
+        <div class="categorias">
+            <h2>{{ 'front.category.crud.header'|trans }}</h2>
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th class="col-md-1">{{ 'front.category.deep'|trans }}</th>
+                        <th class="col-md-10">{{ 'front.category.name'|trans }}</th>
+                        <th class="col-md-1">{{ 'front.category.actions'|trans }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for category in categories %} 
+                        <tr>
+                            <td>{{ categories.getDepth() }} </td>
+                            <td>{{ category.getName()|str_repeat('<i class="fa fa-arrow-right"></i>&nbsp;', categories.getDepth())|raw }}</td>
+                            <td>
+                                <a href="{{ path('category_create', {id: category.id}) }}" class="btn btn-primary"><i class="fa fa-plus"></i></a>
+                                <a href="{{ path('category_update', {id: category.id}) }}" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
+                                <a href="{{ path('category_delete', {id: category.id}) }}" class="btn btn-danger"><i class="fa fa-minus"></i></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+        </div> <!-- end: categorias -->
+
+
+    </div> <!-- end: container -->
+
+
+{% endblock %}
+
+{% block stylesheets %}
+
+
+{% endblock %}

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
+  <file date="2017-07-20T22:47:56Z" source-language="en" target-language="pt_BR" datatype="plaintext" original="not.available">
+    <header>
+      <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
+      <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
+    </header>
+    <body>
+      <trans-unit id="0a0a1d57ebe876effcc0821473a81841e93da0f9" resname="front.categoria.acoes">
+        <source>front.categoria.acoess</source>
+        <target state="new">front.categoria.acoes</target>
+        <jms:reference-file line="54">\..\..\..\..\..\./app/Resources/views\categorias\index.html.twig\</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="0dbbcbb0cacc4252c48e92b1f6640f38fd3e8d94" resname="front.categoria.nome">
+        <source>front.categoria.nome</source>
+        <target state="new">front.categoria.nome</target>
+        <jms:reference-file line="53">\..\..\..\..\..\./app/Resources/views\categorias\index.html.twig\</jms:reference-file>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
