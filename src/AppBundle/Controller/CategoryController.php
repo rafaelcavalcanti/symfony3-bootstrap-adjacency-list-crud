@@ -73,12 +73,20 @@ class CategoryController extends BaseController {
 
     /**
      * @Route("/update/{id}", name="category_update")
+     * @ParamConverter("category", class="AppBundle:Category")
      * @Method({"GET", "POST"})
      * @Template("category/form.html.twig")
      * @param Request $request Request
      */
-    public function updateAction(Request $request) {
-        
+    public function updateAction(Request $request, Category $category) {
+        $form = $this->createForm(CategoryType::class, $category);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            
+        }
+        return [
+            'form' => $form->createView()
+        ];
     }
 
     /**

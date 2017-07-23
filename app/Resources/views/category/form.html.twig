@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-
+<div class="content">
     <div class="portlet light bg-inverse">
         <div class="portlet-title">
             <div class="caption">
                 <i class="icon icon-pencil font-red-sunglo"></i>
-                <span class="caption-subject font-blue-hoki bold uppercase">Publicar notícia</span>
-                <span class="caption-helper"><u>Obrigado</u> por colaborar e transformar nosso ambiente em um lugar mais sustentável.</span>
+                <span class="caption-subject font-blue-hoki bold uppercase">{{ 'front.category.form.caption'|trans }}</span>
+                <span class="caption-helper">{{ 'front.category.fom.caption.helper'|trans }} </span>
             </div>
         </div>
         <div class="portlet-body form">
@@ -32,5 +32,14 @@
             <!-- END FORM CADASTRO -->
         </div>
     </div> <!-- end portlet -->
+</div>
+{% endblock %}
 
+
+{% block  stylesheets_page %}
+    {% stylesheets  
+                'css/portlets.css'
+    %}
+    <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+    {% endstylesheets %}
 {% endblock %}

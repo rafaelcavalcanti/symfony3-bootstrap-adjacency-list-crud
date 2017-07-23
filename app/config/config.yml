@@ -101,6 +101,9 @@ assetic:
         font-awesome-css-map:
             inputs: "../vendor/components/font-awesome/css/font-awesome.css.map"
             output: 'css/font-awesome.css.map'
+        app-portles-css:
+            inputs: "../src/AppBundle/Resources/public/css/portlets.css"
+            output: 'css/portlets.css'
         fontsawesome-otf:
             inputs: "../vendor/components/font-awesome/fonts/FontAwesome.otf"
             output: 'fonts/FontAwesome.otf'

@@ -2,7 +2,11 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>
+            {% block title %}
+                {{ 'front.title' }}
+            {% endblock %}
+        </title>
         {% block stylesheets_core %}
             {% stylesheets  
                 'css/bootstrap.min.css'
@@ -12,8 +16,10 @@
             {% endstylesheets %}
 
         {% endblock %}
-        {% block stylesheets_pagina %}
+        <!-- BEGIN PAGE LEVEL STYLES -->
+        {% block stylesheets_page %}
         {% endblock %}
+        <!-- END PAGE LEVEL STYLES -->
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -25,9 +31,9 @@
     <body>
         <div class="container">
             <h1>{{ 'front.category.title'|trans }}</h1>
-            
+
             {% include 'partials/flashMessages.html.twig' %}
-            
+
             {% block body %}
             {% endblock %}
         </div>
