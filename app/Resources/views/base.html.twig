@@ -25,6 +25,9 @@
     <body>
         <div class="container">
             <h1>{{ 'front.category.title'|trans }}</h1>
+            
+            {% include 'partials/flashMessages.html.twig' %}
+            
             {% block body %}
             {% endblock %}
         </div>

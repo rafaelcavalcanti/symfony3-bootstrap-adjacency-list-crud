@@ -5,7 +5,7 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route,
     Sensio\Bundle\FrameworkExtraBundle\Configuration\Method,
     Sensio\Bundle\FrameworkExtraBundle\Configuration\Template,
-    Symfony\Bundle\FrameworkBundle\Controller\Controller,
+    Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter,
     Symfony\Component\HttpFoundation\Request,
     AppBundle\Entity\Category,
     AppBundle\Type\CategoryType,
@@ -15,7 +15,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route,
 /**
  * @Route("/category")
  */
-class CategoryController extends Controller {
+class CategoryController extends BaseController {
 
     /**
      * @Route("/", name="category_home")
@@ -32,7 +32,7 @@ class CategoryController extends Controller {
         # Solution by:
         # https://wildlyinaccurate.com/simple-nested-sets-in-doctrine-2/
         $categories = $categoryRepo->findBy(array('parentId' => null));
-        
+
         $collection = new ArrayCollection($categories);
         $categoryIterator = new CategoryRecursiveIterator($collection);
         $tableCategories = new \RecursiveIteratorIterator($categoryIterator, \RecursiveIteratorIterator::SELF_FIRST);
@@ -44,6 +44,7 @@ class CategoryController extends Controller {
     }
 
     /**
+     * @Route("/create", name="category_create_root")
      * @Route("/create/{id}", name="category_create")
      * @Method({"GET", "POST"})
      * @Template("category/form.html.twig")
@@ -55,6 +56,15 @@ class CategoryController extends Controller {
         $category = new Category();
         $form = $this->createForm(CategoryType::class, $category);
         $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $em = $this->getDoctrine()->getEntityManager();
+            $em->persist($category);
+            $em->flush();
+
+            $this->addFlash(self::FLASH_SUCCESS, 'front.category.create.success');
+            return $this->redirectToRoute('category_home');
+        }
 
         return [
             'form' => $form->createView()
@@ -73,12 +83,16 @@ class CategoryController extends Controller {
 
     /**
      * @Route("/delete/{id}", name="category_delete")
-     * @Method({"GET", "POST"})
-     * @Template("category/form.html.twig")
-     * @param Request $request Request
+     * @ParamConverter("category", class="AppBundle:Category")
+     * @Method("GET")
+     * @param Category $category Entity requested to delete
      */
-    public function deleteAction(Request $request) {
-        
+    public function deleteAction(Category $category) {
+        $em = $this->getDoctrine()->getEntityManager();
+        $em->remove($category);
+        $em->flush();
+        $this->addFlash(self::FLASH_SUCCESS, 'front.category.delete.success');
+        return $this->redirectToRoute('category_home');
     }
 
 }

@@ -1,16 +1,5 @@
 {% for label, flashes in app.session.flashbag.all %}
     {% for message in flashes %}
-        {% if loop.first %}
-            <div class="note note-{{ label }}">
-                {% if loop.length > 1 %}
-                    <h4 class="block">{{ "flash.titulo.#{label}"|trans }}</h4>
-                {% else %}
-                    <h4 class="block">{{ "flash.titulo.#{label}.simples"|trans }}</h4>
-                {% endif %}
-            {% endif %}
-            <p>{{ message|trans }}</p>
-            {% if loop.last %}
-            </div>
-        {% endif %}
+        <p class="bg-{{ label }}">{{ message|trans }}</p>
     {% endfor %}
 {% endfor %}
