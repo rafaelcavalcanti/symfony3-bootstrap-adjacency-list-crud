@@ -23,8 +23,11 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        {% block body %}
-        {% endblock %}
+        <div class="container">
+            <h1>{{ 'front.category.title'|trans }}</h1>
+            {% block body %}
+            {% endblock %}
+        </div>
         {% block javascripts_core %}
             {% javascripts 
                 'js/jquery.min.js'

@@ -8,17 +8,18 @@ use Doctrine\ORM\EntityRepository,
 
 class CategoryRepository extends EntityRepository {
 
-    
-    
-    public function fetchCategories(array $criteria) {
-
-        # Solution by:
-        # https://wildlyinaccurate.com/simple-nested-sets-in-doctrine-2/
-        $root_categories = $this->findBy($criteria);
-        $collection = new ArrayCollection($root_categories);
-        $category_iterator = new CategoryRecursiveIterator($collection);
-        $categories = new \RecursiveIteratorIterator($category_iterator, \RecursiveIteratorIterator::SELF_FIRST);
-        return $categories;
+    public function fetchForFormType($space = '&nbsp;&nbsp;') {
+        $categories = $this->findBy(array('parentId' => null));
+        $collection = new ArrayCollection($categories);
+        $categoryIterator = new CategoryRecursiveIterator($collection);
+        $recursiveIteratr = new \RecursiveIteratorIterator($categoryIterator, \RecursiveIteratorIterator::SELF_FIRST);
+        
+        $options = array();
+        $options['<root>'] = null;
+        foreach ($recursiveIteratr as $row) {
+            $options[sprintf('%s%s', str_repeat($space, $recursiveIteratr->getDepth()), $row->getName())] = true;
+        }
+        return $options;
     }
 
 }

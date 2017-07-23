@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="portlet light bg-inverse">
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="icon icon-pencil font-red-sunglo"></i>
+                <span class="caption-subject font-blue-hoki bold uppercase">Publicar notícia</span>
+                <span class="caption-helper"><u>Obrigado</u> por colaborar e transformar nosso ambiente em um lugar mais sustentável.</span>
+            </div>
+        </div>
+        <div class="portlet-body form">
+            <!-- FORM CADASTRO -->
+            {{ form_start(form, {'method': 'post'}) }}
+            {{ form_errors(form) }}
+            <div class="form-body">
+                <div class="row form-group">
+                    <div class="col-md-8">
+                        {{ form_row(form.name) }}
+                    </div>
+                    <div class="col-md-4">
+                        {{ form_row(form.parentId)|raw }}
+                    </div>
+                </div>
+            </div>
+            <div class="form-actions right">
+                <a href="{{ path('category_home') }}" title="{{ 'form.button.cancel'|trans }}" class="btn btn-default">{{ 'form.button.cancel'|trans }}</a>
+                {{ form_widget(form.submit) }}
+            </div>
+            {{ form_end(form) }}
+            <!-- END FORM CADASTRO -->
+        </div>
+    </div> <!-- end portlet -->
+
+{% endblock %}

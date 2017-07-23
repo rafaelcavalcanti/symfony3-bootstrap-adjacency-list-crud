@@ -14,19 +14,26 @@ class Navbar extends \Twig_Extension {
             new \Twig_SimpleFunction('category_navbar', array($this, 'Navbar'))
         ];
     }
-
-    public function Navbar($menu) {
-
-        
-        // Ordem
+    
+    
+    public function Navbar(\RecursiveIterator $iterator) {
         
         $navbar = null;
-        foreach ($menu as $row) {
-            $menu->getDepth();
-            $navbar .= sprintf('<li><a href="%s" title="%s">%s</a></li>', '#', $row->getName(), $row->getName());
+        while($iterator->valid()) {
+            if ($iterator->hasChildren()) {
+                $current = $iterator->current();
+                $navbar .= '<li class="dropdown">';
+                $navbar .= sprintf('<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">%s<span class="caret"></span></a>', $current->getName());
+                $navbar .= '<ul class="dropdown-menu">';
+                $navbar .= $this->Navbar($iterator->getChildren());
+                $navbar .= '</ul></li>';
+            } else {
+                $current = $iterator->current();
+                $navbar .= sprintf('<li><a href="%s" title="%s">%s</a></li>', '#', $current->getName(), $current->getName());
+            } 
+            $iterator->next();
         }
-        
-        return sprintf('<ul class="nav navbar-nav navbar-right">%s</ul>', $navbar);
+        return $navbar;
     }
 
 }

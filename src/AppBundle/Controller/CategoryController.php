@@ -8,8 +8,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route,
     Symfony\Bundle\FrameworkBundle\Controller\Controller,
     Symfony\Component\HttpFoundation\Request,
     AppBundle\Entity\Category,
-    AppBundle\Type\CategoryType;
-
+    AppBundle\Type\CategoryType,
+    Doctrine\Common\Collections\ArrayCollection,
+    AppBundle\RecursiveIterator\CategoryRecursiveIterator;
 
 /**
  * @Route("/category")
@@ -26,10 +27,19 @@ class CategoryController extends Controller {
 
         $em = $this->getDoctrine()->getManager();
         $categoryRepo = $em->getRepository(Category::class);
-        $categories = $categoryRepo->fetchCategories(array('parentId' => null));
-     
+
+
+        # Solution by:
+        # https://wildlyinaccurate.com/simple-nested-sets-in-doctrine-2/
+        $categories = $categoryRepo->findBy(array('parentId' => null));
+        
+        $collection = new ArrayCollection($categories);
+        $categoryIterator = new CategoryRecursiveIterator($collection);
+        $tableCategories = new \RecursiveIteratorIterator($categoryIterator, \RecursiveIteratorIterator::SELF_FIRST);
+
         return [
-            'categories' => $categories
+            'categoriesNavbarIterator' => $categoryIterator,
+            'categories' => $tableCategories
         ];
     }
 
@@ -40,7 +50,15 @@ class CategoryController extends Controller {
      * @param Request $request Request
      */
     public function createAction(Request $request) {
-        
+
+        //$form = $this->container->get('app.form.categorytype');
+        $category = new Category();
+        $form = $this->createForm(CategoryType::class, $category);
+        $form->handleRequest($request);
+
+        return [
+            'form' => $form->createView()
+        ];
     }
 
     /**

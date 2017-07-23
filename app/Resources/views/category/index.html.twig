@@ -1,8 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="container">
-        <h1>{{ 'front.category.title'|trans }}</h1>
+
         <!-- Static navbar -->
         <nav class="navbar navbar-default">
             <div class="container-fluid">
@@ -16,10 +15,10 @@
                     <a class="navbar-brand" href="#">{{ 'front.category.nav.header'|trans }}</a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse"> 
-                    
-                    {{ category_navbar(categories)|raw }}
-                            
+                    <ul class="nav navbar-nav navbar-right">
+                        {{ category_navbar(categoriesNavbarIterator)|raw }}
                     </ul>
+
                 </div><!--/.nav-collapse -->
             </div><!--/.container-fluid -->
         </nav>
@@ -48,12 +47,7 @@
                     {% endfor %}
                 </tbody>
             </table>
-
         </div> <!-- end: categorias -->
-
-
-    </div> <!-- end: container -->
-
 
 {% endblock %}
 
