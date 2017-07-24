@@ -46,14 +46,16 @@ class CategoryController extends BaseController {
     /**
      * @Route("/create", name="category_create_root")
      * @Route("/create/{id}", name="category_create")
+     * @ParamConverter("parentCategory", class="AppBundle:Category")
      * @Method({"GET", "POST"})
      * @Template("category/form.html.twig")
      * @param Request $request Request
      */
-    public function createAction(Request $request) {
+    public function createAction(Request $request, Category $parentCategory = null) {
 
-        //$form = $this->container->get('app.form.categorytype');
         $category = new Category();
+        $category->setParentId($parentCategory);
+        
         $form = $this->createForm(CategoryType::class, $category);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -82,7 +84,12 @@ class CategoryController extends BaseController {
         $form = $this->createForm(CategoryType::class, $category);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getEntityManager();
+            $em->persist($category);
+            $em->flush();
             
+            $this->addFlash(self::FLASH_SUCCESS, 'front.category.update.success');
+            return $this->redirectToRoute('category_home');
         }
         return [
             'form' => $form->createView()

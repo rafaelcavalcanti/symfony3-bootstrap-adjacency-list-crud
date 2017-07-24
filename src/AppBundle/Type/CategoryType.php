@@ -13,7 +13,8 @@ use Symfony\Component\Form\AbstractType,
     Symfony\Component\Form\FormEvents,
     AppBundle\Entity\Category,
     AppBundle\Repository\CategoryRepository,
-    Doctrine\ORM\EntityManagerInterface;
+    Doctrine\ORM\EntityManagerInterface,
+    AppBundle\Type\AdjacencyTreeType;
 
 class CategoryType extends AbstractType {
 
@@ -41,30 +42,34 @@ class CategoryType extends AbstractType {
         //var_dump($categories);
         //$category = new Category();
 
-        $builder->add('name', TextType::class, array(
+        $builder->add('name', TextType::class, [
                     'label' => 'form.label.name',
-                    'attr' => array('class' => 'form-control input-lg', 'placeholder' => 'Name of category',
-                        'help' => 'O título será apresentado tanto na listagem, quanto requisitada a leitura da publicação.')
-                ))
-                ->add('parentId', EntityType::class, array(
+                    'attr' => [
+                        'class' => 'form-control input-lg', 'placeholder' => 'Name of category',
+                        'help' => 'O título será apresentado tanto na listagem, quanto requisitada a leitura da publicação.'
+                    ]
+                ])
+                ->add('parentId', EntityType::class, [
                     'class' => Category::class,
                     'choice_label' => function($category) {
                         return $category->getName();
                     },
-                    //'choices' => $category->getChildCategories(),
-                    //
-                    'choice_value' => 'id',
+                    'required' => false,
+                    'placeholder' => 'from.parentid.null.value',
                     'label' => 'form.label.categories',
-                    'attr' => array('class' => 'form-control input-lg')
-                ))
-                ->add('submit', SubmitType::class, array(
+                    'attr' => [
+                        'class' => 'form-control input-lg',
+                        'help' => 'O título será apresentado tanto na listagem, quanto requisitada a leitura da publicação.'
+                    ]
+                ])
+                ->add('submit', SubmitType::class, [
                     'label' => '<i class="fa fa-circle-o-right"></i> Submit',
-                    'attr' => array('class' => 'btn btn-primary')
-        ));
+                    'attr' => ['class' => 'btn btn-primary']
+        ]);
 
 
         // Add listeners for Post field
-        $builder->addEventListener(FormEvents::PRE_SET_DATA, array($this, 'onPreSetData'));
+        //$builder->addEventListener(FormEvents::PRE_SET_DATA, array($this, 'onPreSetData'));
         //$builder->addEventListener(
         //        FormEvents::PRE_SET_DATA, function (FormEvent $event) use ($formModifier) {
         // this would be your entity, i.e. Profile
@@ -75,6 +80,19 @@ class CategoryType extends AbstractType {
     }
 
     public function onPreSetData(FormEvent $event) {
+
+        /*
+          ->add('parentId', EntityType::class, [
+          'class' => Category::class,
+          'choice_label' => function($category) {
+          return $category->getName();
+          },
+          //'choices' => $category->getChildCategories(),
+          //
+          'label' => 'form.label.categories',
+          'attr' => array('class' => 'form-control input-lg')
+          ])
+         */
         /** @var User user */
         $category = $event->getData();
         $form = $event->getForm();

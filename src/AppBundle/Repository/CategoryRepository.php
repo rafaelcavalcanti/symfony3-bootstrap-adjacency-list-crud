@@ -12,12 +12,12 @@ class CategoryRepository extends EntityRepository {
         $categories = $this->findBy(array('parentId' => null));
         $collection = new ArrayCollection($categories);
         $categoryIterator = new CategoryRecursiveIterator($collection);
-        $recursiveIteratr = new \RecursiveIteratorIterator($categoryIterator, \RecursiveIteratorIterator::SELF_FIRST);
+        $recursiveIterator = new \RecursiveIteratorIterator($categoryIterator, \RecursiveIteratorIterator::SELF_FIRST);
         
         $options = array();
         $options['<root>'] = null;
-        foreach ($recursiveIteratr as $row) {
-            $options[sprintf('%s%s', str_repeat($space, $recursiveIteratr->getDepth()), $row->getName())] = true;
+        foreach ($recursiveIterator as $row) {
+            $options[sprintf('%s%s', str_repeat($space, $recursiveIterator->getDepth()), $row->getName())] = true;
         }
         return $options;
     }

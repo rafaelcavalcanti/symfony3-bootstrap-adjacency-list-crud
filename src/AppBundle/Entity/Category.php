@@ -3,44 +3,48 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM,
+    Gedmo\Mapping\Annotation as Gedmo,
+    Symfony\Component\Validator\Constraints as Assert,
     Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Categories
  *
+ * @Gedmo\Tree(type="nested")
  * @ORM\Table(name="category")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CategoryRepository")
  */
 class Category {
 
-    
     /**
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
-    
+
     /**
-     * @ORM\Column(name="nome", type="text", nullable=true)
+     * @ORM\Column(name="nome", type="text", nullable=false)
+     * @Assert\NotBlank(message="entity.category.name.notblank")
      */
     private $name;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Category", inversedBy="children")
-     * @ORM\JoinColumn(name="parent_id", referencedColumnName="id")
+     * @Gedmo\TreeParent
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="children", cascade={"all"})
+     * @ORM\JoinColumn(name="parent_id", referencedColumnName="id", onDelete="CASCADE", nullable=true)
      */
-    protected $parentId;
+    protected $parentId = null;
 
     /**
-     * @ORM\OneToMany(targetEntity="Category", mappedBy="parentId")
+     * @ORM\OneToMany(targetEntity="Category", mappedBy="parentId", cascade={"all"})
      */
     private $children;
 
-    
-    // Pre-setting
-    public function __construct()
-    {
+    /**
+     * 
+     */
+    public function __construct() {
         $this->children = new ArrayCollection;
     }
 
@@ -51,7 +55,7 @@ class Category {
     public function getChildCategories() {
         return $this->children;
     }
-    
+
     /**
      * Set nome
      *
@@ -59,8 +63,7 @@ class Category {
      *
      * @return Categorias
      */
-    public function setName($name)
-    {
+    public function setName($name) {
         $this->name = $name;
 
         return $this;
@@ -71,8 +74,7 @@ class Category {
      *
      * @return string
      */
-    public function getName()
-    {
+    public function getName() {
         return $this->name;
     }
 
@@ -83,8 +85,7 @@ class Category {
      *
      * @return Categorias
      */
-    public function setParentId($parentId)
-    {
+    public function setParentId(Category $parentId = null) {
         $this->parentId = $parentId;
 
         return $this;
@@ -95,8 +96,7 @@ class Category {
      *
      * @return integer
      */
-    public function getParentId()
-    {
+    public function getParentId() {
         return $this->parentId;
     }
 
@@ -105,9 +105,8 @@ class Category {
      *
      * @return integer
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
-    
+
 }

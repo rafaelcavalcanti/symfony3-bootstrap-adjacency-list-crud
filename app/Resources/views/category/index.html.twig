@@ -28,16 +28,20 @@
             <table class="table table-striped table-bordered">
                 <thead>
                     <tr>
-                        <th class="col-md-1">{{ 'front.category.deep'|trans }}</th>
-                        <th class="col-md-10">{{ 'front.category.name'|trans }}</th>
+                        <th class="col-md-1"></th>
+                        <th class="col-md-1"></th>
+                        <th class="col-md-1">{{ 'front.category.id'|trans }}</th>
+                        <th class="col-md-8">{{ 'front.category.name'|trans }}</th>
                         <th class="col-md-1">{{ 'front.category.actions'|trans }}</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for category in categories %} 
                         <tr>
-                            <td>{{ categories.getDepth() }} </td>
-                            <td>{{ category.getName()|str_repeat('<i class="fa fa-arrow-right"></i>&nbsp;', categories.getDepth())|raw }}</td>
+                            <td><a href="#" class="btn btn-success"><i class="fa fa-arrow-up"></i></a></td>
+                            <td><a href="#" class="btn btn-success"><i class="fa fa-arrow-down"></i></a></td>
+                            <td>{{ category.getId() }} </td>
+                            <td>{{ category.getName()|str_repeat('&nbsp;&nbsp;', categories.getDepth())|raw }}</td>
                             <td>
                                 <a href="{{ path('category_create', {id: category.id}) }}" class="btn btn-primary"><i class="fa fa-plus"></i></a>
                                 <a href="{{ path('category_update', {id: category.id}) }}" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
