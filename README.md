@@ -1,9 +1,6 @@
 # Testing Adjacency List (Category) with Symfony 3 
 
 
-----------
-
-
 Hello, i made this example for my studies. Fell free to use and modify to your needed. I'm still working on it, so there is a possibility can find some bugs or not run properly.
 Beyond the Adjacency List, i had testing:
 
@@ -11,8 +8,6 @@ Beyond the Adjacency List, i had testing:
  - Twig Extensions
  - SPL RecursiveIteratorIterator
 
-
-----------
 
 
 # Packages used
@@ -24,8 +19,6 @@ Some of the packages used in this project (composer show -i):
  - Bootstrap v3.3.7
  - Sensio Framework Extra Bundle v3.0.26
 
-
-----------
 
 
 # Installation
@@ -39,15 +32,11 @@ Next step would be cloning this project following the commands bellow:
 After that, 
 
 
-----------
-
 
 # Usage
 On you browser:
 
     http://localhost/app_dev.php
-
-----------
 
 
 # Known Bugs
@@ -55,8 +44,6 @@ On you browser:
  1. There is no translation of views yet.
  2. The dropdown with listing of parent is not organized by name.
 
-
-----------
 
 
 # License
