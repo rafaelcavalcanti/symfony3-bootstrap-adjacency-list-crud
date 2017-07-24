@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
+  <file date="2017-07-25T00:12:33Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
+    <header>
+      <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
+      <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
+    </header>
+    <body>
+      <trans-unit id="34615afddc940a70f10e52a5efe87f0351e5f693" resname="&lt;i class=&quot;fa fa-circle-o-right&quot;&gt;&lt;/i&gt; Submit">
+        <source><![CDATA[<i class="fa fa-circle-o-right"></i> Submit]]></source>
+        <target state="new"><![CDATA[<i class="fa fa-circle-o-right"></i> Submit]]></target>
+        <jms:reference-file line="52">\..\src\AppBundle\Type\CategoryType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="859f38af6127543bf2e1dc5ff86283770631513c" resname="Name of category">
+        <source>Name of category</source>
+        <target state="new">Name of category</target>
+        <jms:reference-file line="34">\..\src\AppBundle\Type\CategoryType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="f093e263a43f00556c7731072a56d6bb6f8562b1" resname="form.label.categories">
+        <source>form.label.categories</source>
+        <target state="new">form.label.categories</target>
+        <jms:reference-file line="45">\..\src\AppBundle\Type\CategoryType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="b64c107152878085360e460b350d43072b6b52dd" resname="form.label.name">
+        <source>form.label.name</source>
+        <target state="new">form.label.name</target>
+        <jms:reference-file line="32">\..\src\AppBundle\Type\CategoryType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="d86cfe0d6b53fbfccade67a3c031ee42c24295e3" resname="from.category.parent.null.value">
+        <source>from.category.parent.null.value</source>
+        <target state="new">from.category.parent.null.value</target>
+        <jms:reference-file line="44">\..\src\AppBundle\Type\CategoryType.php</jms:reference-file>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
