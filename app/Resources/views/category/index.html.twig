@@ -2,56 +2,67 @@
 
 {% block body %}
 
-        <!-- Static navbar -->
-        <nav class="navbar navbar-default">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">{{ 'front.category.nav.header'|trans }}</a>
-                </div>
-                <div id="navbar" class="navbar-collapse collapse"> 
-                    <ul class="nav navbar-nav navbar-right">
-                        {{ category_navbar(categoriesNavbarIterator)|raw }}
-                    </ul>
+    <!-- Static navbar -->
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">{{ 'front.category.nav.header'|trans }}</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse"> 
+                <ul class="nav navbar-nav navbar-right">
+                    {{ category_navbar(categoriesNavbarIterator)|raw }}
+                </ul>
 
-                </div><!--/.nav-collapse -->
-            </div><!--/.container-fluid -->
-        </nav>
+            </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+    </nav>
 
-        <div class="categorias">
-            <h2>{{ 'front.category.crud.header'|trans }} <a href="{{ path('category_create_root') }}" class="btn btn-primary"><i class="fa fa-plus"></i> {{ 'front.category.create' }}</a></h2>
-            <table class="table table-striped table-bordered">
-                <thead>
+    <div class="categorias">
+        <h2>{{ 'front.category.crud.header'|trans }}
+            <a href="{{ path('category_create_root') }}" class="btn btn-primary"><i class="fa fa-plus"></i> {{ 'front.category.create' }}</a>
+            <a href="{{ path('category_teste') }}" class="btn btn-danger"><i class="fa fa-recycle"></i> {{ 'front.category.flush' }}</a>
+        </h2>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th class="col-md-1">&nbsp;</th>
+                    <th class="col-md-1">&nbsp;</th>
+                    <th class="col-md-1">{{ 'front.category.id'|trans }}</th>
+                    <th class="col-md-8">{{ 'front.category.name'|trans }}</th>
+                    <th class="col-md-1">{{ 'front.category.actions'|trans }}</th>
+                </tr>
+            </thead>
+            {% if (categoriesCount == 0) %}
+            <tfoot>
+                <tr>
+                    <td colspan="5">{{ 'front.category.noresults'|trans }}</td>
+                </tr>
+            </tfoot>
+            {% else  %}
+            <tbody>
+                {% for category in categories %} 
                     <tr>
-                        <th class="col-md-1"></th>
-                        <th class="col-md-1"></th>
-                        <th class="col-md-1">{{ 'front.category.id'|trans }}</th>
-                        <th class="col-md-8">{{ 'front.category.name'|trans }}</th>
-                        <th class="col-md-1">{{ 'front.category.actions'|trans }}</th>
+                        <td><a href="#" class="btn btn-success"><i class="fa fa-arrow-up"></i></a></td>
+                        <td><a href="#" class="btn btn-success"><i class="fa fa-arrow-down"></i></a></td>
+                        <td>{{ category.getId() }} </td>
+                        <td>{{ category.getName()|str_repeat('&nbsp;&nbsp;', categories.getDepth())|raw }}</td>
+                        <td>
+                            <a href="{{ path('category_create', {id: category.id}) }}" class="btn btn-primary"><i class="fa fa-plus"></i></a>
+                            <a href="{{ path('category_update', {id: category.id}) }}" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
+                            <a href="{{ path('category_delete', {id: category.id}) }}" class="btn btn-danger"><i class="fa fa-minus"></i></a>
+                        </td>
                     </tr>
-                </thead>
-                <tbody>
-                    {% for category in categories %} 
-                        <tr>
-                            <td><a href="#" class="btn btn-success"><i class="fa fa-arrow-up"></i></a></td>
-                            <td><a href="#" class="btn btn-success"><i class="fa fa-arrow-down"></i></a></td>
-                            <td>{{ category.getId() }} </td>
-                            <td>{{ category.getName()|str_repeat('&nbsp;&nbsp;', categories.getDepth())|raw }}</td>
-                            <td>
-                                <a href="{{ path('category_create', {id: category.id}) }}" class="btn btn-primary"><i class="fa fa-plus"></i></a>
-                                <a href="{{ path('category_update', {id: category.id}) }}" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
-                                <a href="{{ path('category_delete', {id: category.id}) }}" class="btn btn-danger"><i class="fa fa-minus"></i></a>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div> <!-- end: categorias -->
+                {% endfor %}
+            </tbody>
+            {% endif %}
+        </table>
+    </div> <!-- end: categorias -->
 
 {% endblock %}
 

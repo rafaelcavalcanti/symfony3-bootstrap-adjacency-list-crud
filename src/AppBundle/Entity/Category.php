@@ -37,7 +37,7 @@ class Category {
     protected $parentId = null;
 
     /**
-     * @ORM\OneToMany(targetEntity="Category", mappedBy="parentId", cascade={"all"})
+     * @ORM\OneToMany(targetEntity="Category", mappedBy="parentId", orphanRemoval=true)
      */
     private $children;
 

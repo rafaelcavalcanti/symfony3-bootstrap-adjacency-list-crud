@@ -23,7 +23,7 @@ class Navbar extends \Twig_Extension {
             if ($iterator->hasChildren()) {
                 $current = $iterator->current();
                 $navbar .= '<li class="dropdown">';
-                $navbar .= sprintf('<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">%s<span class="caret"></span></a>', $current->getName());
+                $navbar .= sprintf('<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">%s&nbsp;<span class="caret"></span></a>', $current->getName());
                 $navbar .= '<ul class="dropdown-menu">';
                 $navbar .= $this->Navbar($iterator->getChildren());
                 $navbar .= '</ul></li>';
