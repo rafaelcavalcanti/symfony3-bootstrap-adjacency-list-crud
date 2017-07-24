@@ -1,9 +1,5 @@
 # Testing Adjacency List (Category) with Symfony 3 
 
-
-----------
-
-
 Hello, i made this example for my studies. Fell free to use and modify to your needed. I'm still working on it, so there is a possibility can find some bugs or not run properly.
 Beyond the Adjacency List, i had testing:
 
