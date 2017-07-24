@@ -18,26 +18,12 @@ use Symfony\Component\Form\AbstractType,
 
 class CategoryType extends AbstractType {
 
-    /**
-     *
-     * @var EntityManager
-     */
-    private $em;
-
-    /**
-     * 
-     * @param EntityManager $em
-     */
-    public function __construct(EntityManagerInterface $em) {
-        $this->em = $em;
-    }
-
     public function buildForm(FormBuilderInterface $builder, array $options) {
 
 
-        https://stackoverflow.com/questions/41863661/symfony-3-spl-object-hash-expects-parameter-1-to-be-object-integer-given-when-s
-        $repo = $this->em->getRepository(Category::class);
-        $categories = $repo->fetchForFormType('--');
+        //https://stackoverflow.com/questions/41863661/symfony-3-spl-object-hash-expects-parameter-1-to-be-object-integer-given-when-s
+        //$repo = $this->em->getRepository(Category::class);
+        //$categories = $repo->fetchForFormType('--');
 
         //var_dump($categories);
         //$category = new Category();
@@ -49,13 +35,13 @@ class CategoryType extends AbstractType {
                         'help' => 'O título será apresentado tanto na listagem, quanto requisitada a leitura da publicação.'
                     ]
                 ])
-                ->add('parentId', EntityType::class, [
+                ->add('parent', EntityType::class, [
                     'class' => Category::class,
                     'choice_label' => function($category) {
-                        return $category->getName();
+                        return str_repeat('--', $category->getTreeLevel()) . $category->getName();
                     },
                     'required' => false,
-                    'placeholder' => 'from.parentid.null.value',
+                    'placeholder' => 'from.category.parent.null.value',
                     'label' => 'form.label.categories',
                     'attr' => [
                         'class' => 'form-control input-lg',
@@ -67,37 +53,6 @@ class CategoryType extends AbstractType {
                     'attr' => ['class' => 'btn btn-primary']
         ]);
 
-
-        // Add listeners for Post field
-        //$builder->addEventListener(FormEvents::PRE_SET_DATA, array($this, 'onPreSetData'));
-        //$builder->addEventListener(
-        //        FormEvents::PRE_SET_DATA, function (FormEvent $event) use ($formModifier) {
-        // this would be your entity, i.e. Profile
-        //    $data = $event->getData();
-        //    $formModifier($event->getForm(), $data->getLocationCountry());
-        //}
-        //);
-    }
-
-    public function onPreSetData(FormEvent $event) {
-
-        /*
-          ->add('parentId', EntityType::class, [
-          'class' => Category::class,
-          'choice_label' => function($category) {
-          return $category->getName();
-          },
-          //'choices' => $category->getChildCategories(),
-          //
-          'label' => 'form.label.categories',
-          'attr' => array('class' => 'form-control input-lg')
-          ])
-         */
-        /** @var User user */
-        $category = $event->getData();
-        $form = $event->getForm();
-
-        $this->addElements($form, $category->getChildCategories());
     }
 
     public function configureOptions(OptionsResolver $resolver) {

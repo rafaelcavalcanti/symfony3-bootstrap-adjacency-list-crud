@@ -20,7 +20,9 @@
                         {{ form_row(form.name) }}
                     </div>
                     <div class="col-md-4">
-                        {{ form_row(form.parentId)|raw }}
+                        {% autoescape %}
+                        {{ form_row(form.parent)|raw }}
+                        {% endautoescape %}
                     </div>
                 </div>
             </div>

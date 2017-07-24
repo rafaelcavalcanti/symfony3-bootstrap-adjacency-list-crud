@@ -30,14 +30,46 @@ class Category {
     private $name;
 
     /**
-     * @Gedmo\TreeParent
-     * @ORM\ManyToOne(targetEntity="Category", inversedBy="children", cascade={"all"})
-     * @ORM\JoinColumn(name="parent_id", referencedColumnName="id", onDelete="CASCADE", nullable=true)
+     * @var integer
+     *
+     * @Gedmo\TreeLeft
+     * @ORM\Column(name="tree_left", type="integer")
      */
-    protected $parentId = null;
+    private $treeLeft;
 
     /**
-     * @ORM\OneToMany(targetEntity="Category", mappedBy="parentId", orphanRemoval=true)
+     * @var integer
+     *
+     * @Gedmo\TreeLevel
+     * @ORM\Column(name="tree_level",type="integer")
+     */
+    private $treeLevel;
+
+    /**
+     * @var integer
+     *
+     * @Gedmo\TreeRight
+     * @ORM\Column(name="tree_right",type="integer")
+     */
+    private $treeRight;
+
+    /**
+     * @Gedmo\TreeRoot
+     * @ORM\ManyToOne(targetEntity="Category")
+     * @ORM\JoinColumn(referencedColumnName="id", onDelete="CASCADE")
+     */
+    private $root;
+
+    /**
+     * @Gedmo\TreeParent
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="children")
+     * @ORM\JoinColumn(name="parent_id", referencedColumnName="id", onDelete="CASCADE")
+     */
+    protected $parent;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Category", mappedBy="parent")
+     * @ORM\OrderBy({"treeLeft" = "ASC"})
      */
     private $children;
 
@@ -81,12 +113,12 @@ class Category {
     /**
      * Set parentId
      *
-     * @param integer $parentId
+     * @param integer $parent
      *
      * @return Categorias
      */
-    public function setParentId(Category $parentId = null) {
-        $this->parentId = $parentId;
+    public function setParent(Category $parent = null) {
+        $this->parent = $parent;
 
         return $this;
     }
@@ -96,8 +128,8 @@ class Category {
      *
      * @return integer
      */
-    public function getParentId() {
-        return $this->parentId;
+    public function getParent() {
+        return $this->parent;
     }
 
     /**
@@ -107,6 +139,37 @@ class Category {
      */
     public function getId() {
         return $this->id;
+    }
+
+    /**
+     * Get treeLeft
+     *
+     * @return integer
+     */
+    public function getTreeLeft() {
+        return $this->treeLeft;
+    }
+
+    /**
+     * Get treeLevel
+     *
+     * @return integer
+     */
+    public function getTreeLevel() {
+        return $this->treeLevel;
+    }
+
+    /**
+     * Get treeRight
+     *
+     * @return integer
+     */
+    public function getTreeRight() {
+        return $this->treeRight;
+    }
+
+    public function getRoot() {
+        return $this->root;
     }
 
 }

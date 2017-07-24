@@ -28,17 +28,13 @@ class CategoryController extends BaseController {
         $em = $this->getDoctrine()->getManager();
         $categoryRepo = $em->getRepository(Category::class);
 
-
         # Solution by:
         # https://wildlyinaccurate.com/simple-nested-sets-in-doctrine-2/
-        $categories = $categoryRepo->findBy(array('parentId' => null));
-
+        $categories = $categoryRepo->findBy(array('parent' => null));
         $collection = new ArrayCollection($categories);
         $categoryIterator = new CategoryRecursiveIterator($collection);
         $tableCategories = new \RecursiveIteratorIterator($categoryIterator, \RecursiveIteratorIterator::SELF_FIRST);
 
-        
-        
         return [
             'categoriesNavbarIterator' => $categoryIterator,
             'categories' => $tableCategories,
@@ -57,7 +53,7 @@ class CategoryController extends BaseController {
     public function createAction(Request $request, Category $parentCategory = null) {
 
         $category = new Category();
-        $category->setParentId($parentCategory);
+        $category->setParent($parentCategory);
         
         $form = $this->createForm(CategoryType::class, $category);
         $form->handleRequest($request);
@@ -67,6 +63,7 @@ class CategoryController extends BaseController {
             $em->persist($category);
             $em->flush();
 
+            
             $this->addFlash(self::FLASH_SUCCESS, 'front.category.create.success');
             return $this->redirectToRoute('category_home');
         }
@@ -107,50 +104,13 @@ class CategoryController extends BaseController {
      */
     public function deleteAction(Category $category) {
         $em = $this->getDoctrine()->getEntityManager();
+        foreach($category->getChildCategories() as $child) {
+            $em->remove($child);
+        }
         $em->remove($category);
         $em->flush();
         $this->addFlash(self::FLASH_SUCCESS, 'front.category.delete.success');
         return $this->redirectToRoute('category_home');
     }
     
-    /**
-     * @Route("/teste/", name="category_teste")
-     * @Method("GET")
-     * @param Category $category Entity requested to delete
-     */
-    public function testeAction() {
-        $em = $this->getDoctrine()->getEntityManager();
-        $category = new Category();
-        $category->setName('Ciacolor');
-        $em->persist($category);
-        
-        $category2 = new Category();
-        $category2->setName('Massa de Nivelamento');
-        $category2->setParentId($category);
-        
-        $category3 = new Category();
-        $category3->setName('Tintas');
-        $category3->setParentId($category);
-        
-        $category4 = new Category();
-        $category4->setName('Alternativa Eco');
-        $em->persist($category4);
-        
-        $category5 = new Category();
-        $category5->setName('Tijolo Ecológico');
-        $category5->setParentId($category4);
-        
-        $category6 = new Category();
-        $category6->setName('Pavers');
-        $category6->setParentId($category4);
-        
-        $em->persist($category2);
-        $em->persist($category3);
-        $em->persist($category5);
-        $em->persist($category6);
-        
-        $em->flush();
-        return $this->redirectToRoute('category_home');
-    }
-
 }

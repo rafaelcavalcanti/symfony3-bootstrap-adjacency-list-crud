@@ -26,13 +26,10 @@
     <div class="categorias">
         <h2>{{ 'front.category.crud.header'|trans }}
             <a href="{{ path('category_create_root') }}" class="btn btn-primary"><i class="fa fa-plus"></i> {{ 'front.category.create' }}</a>
-            <a href="{{ path('category_teste') }}" class="btn btn-danger"><i class="fa fa-recycle"></i> {{ 'front.category.flush' }}</a>
         </h2>
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th class="col-md-1">&nbsp;</th>
-                    <th class="col-md-1">&nbsp;</th>
                     <th class="col-md-1">{{ 'front.category.id'|trans }}</th>
                     <th class="col-md-8">{{ 'front.category.name'|trans }}</th>
                     <th class="col-md-1">{{ 'front.category.actions'|trans }}</th>
@@ -48,8 +45,6 @@
             <tbody>
                 {% for category in categories %} 
                     <tr>
-                        <td><a href="#" class="btn btn-success"><i class="fa fa-arrow-up"></i></a></td>
-                        <td><a href="#" class="btn btn-success"><i class="fa fa-arrow-down"></i></a></td>
                         <td>{{ category.getId() }} </td>
                         <td>{{ category.getName()|str_repeat('&nbsp;&nbsp;', categories.getDepth())|raw }}</td>
                         <td>
