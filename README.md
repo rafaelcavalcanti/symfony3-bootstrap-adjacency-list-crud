@@ -7,7 +7,7 @@ Beyond the Adjacency List, i had testing:
  - Twig Extensions
  - SPL RecursiveIteratorIterator
 
-# Packages used
+## Packages used
 Some of the packages used in this project (composer show -i):
 
  - Symfony v3.3.5
@@ -17,11 +17,11 @@ Some of the packages used in this project (composer show -i):
  - Sensio Framework Extra Bundle v3.0.26
 
 
-# Installation
+## Installation
 I suppose that you already have a composer installed in your system and some [XAMPP](https://www.apachefriends.org), [MAMP](https://www.mamp.info/en/), LAMP activated either. If you have some experience T.I. consider using [Docker](https://www.docker.com/). 
 Next step would be cloning this project following the commands bellow:
 
-    $ git clone https://github.com/rafaelcavalcanti/symfony3-bootstrap-adjacency-list-crud
+    $ git clone https://github.com/rafaelcavalcanti/symfony3-bootstrap-adjacency-list-crud.git
     $ cd symfony3-bootstrap-adjacency-list-crud
     $ compose install
 
@@ -30,12 +30,12 @@ After that, install the assetics:
     $ php bin/console assetic:dump
 
 
-# Usage
+## Usage
 On you browser:
 
     http://localhost/app_dev.php
 
-# Frequently Asked Questions
+## Frequently Asked Questions
 
  - How to make setup a translation to my language?
  
@@ -44,9 +44,9 @@ On you browser:
 
 * Find your **language-code** through [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes), in my case [pt_BR](https://en.wikipedia.org/wiki/IETF_language_tag).
 
-# Known Bugs
+## Known Bugs
 
  1. There is no translation of views yet.
  2. The dropdown with listing of parent is not organized by name.
 
-# License
+## License
