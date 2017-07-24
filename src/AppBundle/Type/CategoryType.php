@@ -20,19 +20,11 @@ class CategoryType extends AbstractType {
 
     public function buildForm(FormBuilderInterface $builder, array $options) {
 
-
-        //https://stackoverflow.com/questions/41863661/symfony-3-spl-object-hash-expects-parameter-1-to-be-object-integer-given-when-s
-        //$repo = $this->em->getRepository(Category::class);
-        //$categories = $repo->fetchForFormType('--');
-
-        //var_dump($categories);
-        //$category = new Category();
-
         $builder->add('name', TextType::class, [
-                    'label' => 'form.label.name',
+                    'label' => 'form.category.label.name',
                     'attr' => [
-                        'class' => 'form-control input-lg', 'placeholder' => 'Name of category',
-                        'help' => 'O título será apresentado tanto na listagem, quanto requisitada a leitura da publicação.'
+                        'class' => 'form-control input-lg', 'placeholder' => 'form.category.placeholder.name',
+                        'help' => ''
                     ]
                 ])
                 ->add('parent', EntityType::class, [
@@ -45,7 +37,7 @@ class CategoryType extends AbstractType {
                     'label' => 'form.label.categories',
                     'attr' => [
                         'class' => 'form-control input-lg',
-                        'help' => 'O título será apresentado tanto na listagem, quanto requisitada a leitura da publicação.'
+                        'help' => ''
                     ]
                 ])
                 ->add('submit', SubmitType::class, [

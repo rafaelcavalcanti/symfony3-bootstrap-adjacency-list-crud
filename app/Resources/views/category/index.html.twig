@@ -25,14 +25,14 @@
 
     <div class="categorias">
         <h2>{{ 'front.category.crud.header'|trans }}
-            <a href="{{ path('category_create_root') }}" class="btn btn-primary"><i class="fa fa-plus"></i> {{ 'front.category.create' }}</a>
+            <a href="{{ path('category_create_root') }}" class="btn btn-primary"><i class="fa fa-plus"></i> {{ 'front.category.create'|trans }}</a>
         </h2>
         <table class="table table-bordered">
             <thead>
                 <tr>
                     <th class="col-md-1">{{ 'front.category.id'|trans }}</th>
-                    <th class="col-md-8">{{ 'front.category.name'|trans }}</th>
-                    <th class="col-md-1">{{ 'front.category.actions'|trans }}</th>
+                    <th class="col-md-7">{{ 'front.category.name'|trans }}</th>
+                    <th class="col-md-2">{{ 'front.category.actions'|trans }}</th>
                 </tr>
             </thead>
             {% if (categoriesCount == 0) %}
@@ -48,9 +48,9 @@
                         <td>{{ category.getId() }} </td>
                         <td>{{ category.getName()|str_repeat('&nbsp;&nbsp;', categories.getDepth())|raw }}</td>
                         <td>
-                            <a href="{{ path('category_create', {id: category.id}) }}" class="btn btn-primary"><i class="fa fa-plus"></i></a>
-                            <a href="{{ path('category_update', {id: category.id}) }}" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
-                            <a href="{{ path('category_delete', {id: category.id}) }}" class="btn btn-danger"><i class="fa fa-minus"></i></a>
+                            <a href="{{ path('category_create', {id: category.id}) }}" class="btn btn-primary" title="{{ 'front.category.create'|trans }}"><i class="fa fa-plus"></i></a>
+                            <a href="{{ path('category_update', {id: category.id}) }}" class="btn btn-warning" title="{{ 'front.category.update'|trans }}"><i class="fa fa-pencil"></i></a>
+                            <a href="{{ path('category_delete', {id: category.id}) }}" class="btn btn-danger" title="{{ 'front.category.delete'|trans }}"><i class="fa fa-minus"></i></a>
                         </td>
                     </tr>
                 {% endfor %}

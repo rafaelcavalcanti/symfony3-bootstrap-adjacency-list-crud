@@ -1,4 +1,5 @@
 {% extends 'base.html.twig' %}
+{% form_theme form 'twig_templates/fields.html.twig' %}
 
 {% block body %}
 <div class="content">
@@ -7,7 +8,7 @@
             <div class="caption">
                 <i class="icon icon-pencil font-red-sunglo"></i>
                 <span class="caption-subject font-blue-hoki bold uppercase">{{ 'front.category.form.caption'|trans }}</span>
-                <span class="caption-helper">{{ 'front.category.fom.caption.helper'|trans }} </span>
+                <span class="caption-helper">{{ 'front.category.form.caption.helper'|trans }} </span>
             </div>
         </div>
         <div class="portlet-body form">
