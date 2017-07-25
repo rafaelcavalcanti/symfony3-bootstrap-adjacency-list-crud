@@ -22,7 +22,7 @@ Some of the packages used in this project (composer show -i):
 I suppose that you already have a composer installed in your system and some [XAMPP](https://www.apachefriends.org), [MAMP](https://www.mamp.info/en/), LAMP activated either. If you have some experience T.I. consider using [Docker](https://www.docker.com/). 
 Next step would be cloning this project following the commands bellow:
 
-    $ git clone https://github.com/rafaelcavalcanti/symfony3-bootstrap-adjacency-list-crud
+    $ git clone https://github.com/rafaelcavalcanti/symfony3-bootstrap-adjacency-list-crud.git
     $ cd symfony3-bootstrap-adjacency-list-crud
     $ compose install
 
@@ -30,6 +30,10 @@ After that, install the assetics:
 
     $ php bin/console assetic:dump
 
+Refresh translation file:
+
+
+    $ php bin/console translation:extract en --config=app --output-format=xliff
 
 ## Usage
 On you browser:
