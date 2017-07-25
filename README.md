@@ -9,11 +9,13 @@ Beyond the Adjacency List, i had testing:
 ## Packages used
 Some of the packages used in this project (composer show -i):
 
- - Symfony v3.3.5
- - Doctrine ORM v2.5.6
- - Stof Doctrine Extension v1.2.2
- - Bootstrap v3.3.7
- - Sensio Framework Extra Bundle v3.0.26
+| Package                       | Version |
+| ----------------------------- |:-------:| 
+| Symfony                       | 3.3.5   |
+| Doctrine ORM                  | 2.5.6   |
+| Stof Doctrine Extension       | 1.2.2   |
+| Bootstrap                     | 3.3.7   |
+| Sensio Framework Extra Bundle | 3.0.26  |
 
 
 ## Installation
