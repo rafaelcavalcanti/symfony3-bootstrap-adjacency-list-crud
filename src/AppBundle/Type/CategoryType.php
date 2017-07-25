@@ -41,7 +41,7 @@ class CategoryType extends AbstractType {
                     ]
                 ])
                 ->add('submit', SubmitType::class, [
-                    'label' => '<i class="fa fa-circle-o-right"></i> Submit',
+                    'label' => 'Submit <i class="fa fa-lg fa-arrow-circle-o-right"></i>',
                     'attr' => ['class' => 'btn btn-primary']
         ]);
 

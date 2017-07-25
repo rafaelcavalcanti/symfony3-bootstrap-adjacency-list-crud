@@ -41,6 +41,7 @@ On you browser:
  
     $ php bin/console translation:extract **[language-code]** --config=app --output-format=xliff
 
+
 *Find your **language-code** through [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes), in my case [pt_BR](https://en.wikipedia.org/wiki/IETF_language_tag).
 
  - Why its so slow to render the **/app_dev.php**?
