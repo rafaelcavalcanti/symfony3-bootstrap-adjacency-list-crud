@@ -7,7 +7,7 @@ Beyond the Adjacency List, i had testing:
  - SPL RecursiveIteratorIterator
 
 
-![Printscreen of the Home](https://https://github.com/rafaelcavalcanti/symfony3-bootstrap-adjacency-list-crud/doc/screenshot001.jpg)
+![Printscreen of the Home](https://github.com/rafaelcavalcanti/symfony3-bootstrap-adjacency-list-crud/blob/master/doc/screenshot001.jpg)
 
 ## Packages used
 Some of the packages used in this project (composer show -i):
