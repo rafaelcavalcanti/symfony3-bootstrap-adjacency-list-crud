@@ -68,6 +68,7 @@ Try to put (or set) in your **php.ini** this params:
 
 ## To Do
 
-  1.  
+ 1. Possibility to change the order of the menu.
+ 2. Making a option to choose what language the client wants.
 
 ## License
