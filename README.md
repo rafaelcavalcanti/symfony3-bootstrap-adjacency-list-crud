@@ -38,7 +38,6 @@ On you browser:
 
  - How to make setup a translation to my language?
  
- 
     $ php bin/console translation:extract **[language-code]** --config=app --output-format=xliff
 
 
