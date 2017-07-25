@@ -54,7 +54,7 @@ Try to put (or set) in your **php.ini** this params:
 
 ## Known Bugs
 
- 1. There is no translation of views yet.
+ 1. ~~There is no translation of views yet.~~ (en)
  2. The dropdown with listing of parent is not organized by name.
 
 ## License
