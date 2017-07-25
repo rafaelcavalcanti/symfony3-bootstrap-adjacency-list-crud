@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2017-07-25T01:31:45Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
+  <file date="2017-07-25T02:01:50Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
     </header>
     <body>
-      <trans-unit id="34615afddc940a70f10e52a5efe87f0351e5f693" resname="&lt;i class=&quot;fa fa-circle-o-right&quot;&gt;&lt;/i&gt; Submit">
-        <source><![CDATA[<i class="fa fa-circle-o-right"></i> Submit]]></source>
-        <target state="new"><![CDATA[<i class="fa fa-circle-o-right"></i> Submit]]></target>
+      <trans-unit id="c92a9b4eee7edceac4d15bb00711ed1723c78ba1" resname="Submit &lt;i class=&quot;fa fa-lg fa-arrow-circle-o-right&quot;&gt;&lt;/i&gt;">
+        <source><![CDATA[Submit <i class="fa fa-lg fa-arrow-circle-o-right"></i>]]></source>
+        <target state="new"><![CDATA[Submit <i class="fa fa-lg fa-arrow-circle-o-right"></i>]]></target>
         <jms:reference-file line="44">\..\..\..\..\..\C:/xampp70/htdocs/mediasystem/app/../src\AppBundle\Type\CategoryType.php\</jms:reference-file>
       </trans-unit>
       <trans-unit id="97d27da6396d86e994218dc3c5a247d92c39f32a" resname="form.button.cancel">
         <source>form.button.cancel</source>
         <target state="new">Cancel</target>
-        <jms:reference-file line="30">\..\..\..\..\..\C:/xampp70/htdocs/mediasystem/app\Resources\views\category\form.html.twig\</jms:reference-file>
+        <jms:reference-file line="31">\..\..\..\..\..\C:/xampp70/htdocs/mediasystem/app\Resources\views\category\form.html.twig\</jms:reference-file>
       </trans-unit>
       <trans-unit id="6a71db9d011710927fbef8a33fda71528aed1ea1" resname="form.category.label.name">
         <source>form.category.label.name</source>
@@ -60,12 +60,12 @@
       <trans-unit id="ae3c360172ec830f7cc7ee7f5a7a49067fdb76c3" resname="front.category.form.caption">
         <source>front.category.form.caption</source>
         <target state="new">Category</target>
-        <jms:reference-file line="9">\..\..\..\..\..\C:/xampp70/htdocs/mediasystem/app\Resources\views\category\form.html.twig\</jms:reference-file>
+        <jms:reference-file line="10">\..\..\..\..\..\C:/xampp70/htdocs/mediasystem/app\Resources\views\category\form.html.twig\</jms:reference-file>
       </trans-unit>
       <trans-unit id="3cace63a7b81b42af91208c5decf65dcecb72eed" resname="front.category.form.caption.helper">
         <source>front.category.form.caption.helper</source>
         <target state="new">type a name and choose a place to put it in.</target>
-        <jms:reference-file line="10">\..\..\..\..\..\C:/xampp70/htdocs/mediasystem/app\Resources\views\category\form.html.twig\</jms:reference-file>
+        <jms:reference-file line="11">\..\..\..\..\..\C:/xampp70/htdocs/mediasystem/app\Resources\views\category\form.html.twig\</jms:reference-file>
       </trans-unit>
       <trans-unit id="835d513debc6247daa46a1b976f74e8fecdc86dd" resname="front.category.id">
         <source>front.category.id</source>
